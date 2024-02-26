@@ -1,15 +1,20 @@
+import Link from "next/link";
 import { FaHome } from "react-icons/fa";
 
 const Navbar = () => {
   return (
     <section>
-      <div className="flex items-center justify-between border border-slate-700 p-3 rounded-md mt-10">
+      <div className="flex items-center justify-between border border-slate-700 p-3 rounded-md mt-10 bg-slate-900">
         <h1>
-          <FaHome size={24} color="green" />
+          <Link href="/">
+            <FaHome size={26} color="green" />
+          </Link>
         </h1>
-        <button className=" px-4 py-2 border border-slate-700 rounded ">
-          Add Topic
-        </button>
+        <Link href="/addTopic">
+          <button className=" px-4 py-2 border border-slate-700 rounded ">
+            Add Topic
+          </button>
+        </Link>
       </div>
     </section>
   );
