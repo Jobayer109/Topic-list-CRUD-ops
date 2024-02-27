@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const INIT_VALUE = {
@@ -7,8 +8,26 @@ const INIT_VALUE = {
   description: "",
 };
 
-const AddTopicForm = () => {
+const getAllTopics = async () => {
+  try {
+    const res = await fetch("http://localhost/3000/topics", {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch topics");
+    }
+   
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const AddTopicForm = async () => {
   const [formData, setFormData] = useState({ ...INIT_VALUE });
+
+  const router = useRouter();
 
   const handleChange = (e) => {
     setFormData({
@@ -19,6 +38,9 @@ const AddTopicForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const topics = await getAllTopics();
+    console.log(topics);
   };
 
   return (
@@ -30,9 +52,9 @@ const AddTopicForm = () => {
         <input
           type="text"
           name="title"
-          placeholder="Topic title"
+          placeholder="write topic title here"
           onChange={handleChange}
-          className="px-4 py-3 bg-black border border-slate-700 outline-none rounded-md"
+          className="px-4 py-3 bg-slate-800 border border-slate-700 outline-none rounded-md"
         />
       </div>
       <div className="flex flex-col mt-4">
@@ -44,7 +66,7 @@ const AddTopicForm = () => {
           name="description"
           onChange={handleChange}
           placeholder="write something about the topic ..."
-          className="px-4 py-3 bg-black border border-slate-700 outline-none rounded-md"
+          className="px-4 py-3 bg-slate-800 border border-slate-700 outline-none rounded-md"
         />
       </div>
 
