@@ -1,5 +1,5 @@
 import dbConnection from "@/libs/config";
-import Topic from "@/models/topic";
+import Topic from "@/models/topicModel";
 import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
