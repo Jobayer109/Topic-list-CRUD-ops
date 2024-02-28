@@ -1,5 +1,6 @@
 "use client";
 
+import createTopic from "@/libs/createTopic";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -17,27 +18,9 @@ const AddTopic = () => {
       toast.error("Title and description are required");
       return;
     }
-
-    try {
-      const res = await fetch("http://localhost:3000/api/topics", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ title, description }),
-      });
-
-      if (res.ok) {
-        router.push("/");
-        router.refresh();
-        toast.success("New topic created");
-      } else {
-        throw new Error("Failed to create task");
-      }
-    } catch (error) {
-      toast.error(error.message);
-    }
+    await createTopic(title, description, router);
   };
+
   return (
     <div className="border border-gray-700 mt-5 p-3 rounded-md">
       <form onSubmit={handleSubmit}>
