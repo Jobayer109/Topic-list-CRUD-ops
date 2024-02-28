@@ -1,5 +1,6 @@
 import getAllTopics from "@/libs/getAllTopics";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
+import RemoveTopic from "./removeTopic";
 
 const TopicList = async () => {
   const topics = await getAllTopics();
@@ -16,7 +17,7 @@ const TopicList = async () => {
             <p className="text-slate-400">{topic.description}</p>
           </div>
           <div className="flex items-center gap-3">
-            <FaTrash className="text-red-500 size-5" />
+            <RemoveTopic id={topic._id} />
             <FaEdit className="text-green-600 size-5" />
           </div>
         </div>

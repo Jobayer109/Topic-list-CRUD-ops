@@ -14,3 +14,13 @@ export const GET = async () => {
   await dbConnection();
   return NextResponse.json(topics, { status: 200 });
 };
+
+export const DELETE = async (request) => {
+  const id = request.nextUrl.searchParams.get("id");
+  await dbConnection();
+  await Topic.findByIdAndDelete(id);
+  return NextResponse.json(
+    { message: "Topic is deleted successfully" },
+    { status: 200 }
+  );
+};
