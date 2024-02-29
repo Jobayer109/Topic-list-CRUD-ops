@@ -1,4 +1,5 @@
 import getAllTopics from "@/libs/getAllTopics";
+import Link from "next/link";
 import { FaEdit } from "react-icons/fa";
 import RemoveTopic from "./removeTopic";
 
@@ -18,7 +19,9 @@ const TopicList = async () => {
           </div>
           <div className="flex items-center gap-3">
             <RemoveTopic id={topic._id} />
-            <FaEdit className="text-green-600 size-5" />
+            <Link href={`/updateTopic/${topic._id}`}>
+              <FaEdit className="text-green-600 size-5" />
+            </Link>
           </div>
         </div>
       ))}
