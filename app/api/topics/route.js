@@ -10,8 +10,8 @@ export const POST = async (request) => {
 };
 
 export const GET = async () => {
-  const topics = await Topic.find();
   await dbConnection();
+  const topics = await Topic.find();
   return NextResponse.json(topics, { status: 200 });
 };
 

@@ -6,7 +6,7 @@ const TopicList = async () => {
   const topics = await getAllTopics();
 
   return (
-    <>
+    <div>
       {topics.map((topic) => (
         <div
           key={topic._id}
@@ -22,7 +22,7 @@ const TopicList = async () => {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
