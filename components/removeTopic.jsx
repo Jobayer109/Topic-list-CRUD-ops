@@ -8,16 +8,19 @@ const RemoveTopic = ({ id }) => {
   const router = useRouter();
 
   const handleRemove = async () => {
-    try {
-      const res = await fetch(`http://localhost:3000/api/topics?id=${id}`, {
-        method: "DELETE",
-      });
-      if (res.ok) {
-        toast.success("Topic deleted successfully");
-        router.refresh();
+    const confirmed = confirm("Are you sure ?");
+    if (confirmed) {
+      try {
+        const res = await fetch(`http://localhost:3000/api/topics?id=${id}`, {
+          method: "DELETE",
+        });
+        if (res.ok) {
+          toast.success("Topic deleted successfully");
+          router.refresh();
+        }
+      } catch (error) {
+        console.log(error.message);
       }
-    } catch (error) {
-      console.log(error.message);
     }
   };
 
