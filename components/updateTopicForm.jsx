@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import toast from "react-hot-toast";
 
 const UpdateTopicForm = ({ id, title, description }) => {
   const [newTitle, setNewTitle] = useState(title);
@@ -23,11 +22,11 @@ const UpdateTopicForm = ({ id, title, description }) => {
       });
 
       if (!res.ok) {
-        throw new Error("Failed to fetch ");
+        throw new Error("Failed to fetch");
       }
       router.push("/");
       router.refresh();
-      toast.success("Topic is updated");
+      toast.success("Topic is updated now");
     } catch (error) {
       console.log(error);
     }
