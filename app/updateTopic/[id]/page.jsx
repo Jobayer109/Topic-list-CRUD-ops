@@ -5,21 +5,21 @@ const getTopicById = async (id) => {
     const res = await fetch(`http:localhost:3000/api/topics/${id}`, {
       cache: "no-store",
     });
+
     if (!res.ok) {
-      throw new Error("Failed to fetch");
+      throw new Error("Failed to fetch topic");
     }
-    console.log(res.json());
+    return res.json();
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };
 
 const UpdateTopic = async ({ params }) => {
   const { id } = params;
-  console.log(id);
-  const t = await getTopicById(id);
-  console.log(t);
-  return <UpdateTopicForm />;
+  const topic = await getTopicById(id);
+  const { title, description } = topic.topic;
+  return <UpdateTopicForm id={id} title={title} description={description} />;
 };
 
 export default UpdateTopic;
