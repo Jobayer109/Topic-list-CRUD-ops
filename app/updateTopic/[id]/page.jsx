@@ -17,8 +17,9 @@ const getTopicById = async (id) => {
 
 const UpdateTopic = async ({ params }) => {
   const { id } = params;
-  const topic = await getTopicById(id);
+  let topic = await getTopicById(id);
   const { title, description } = topic.topic;
+
   return <UpdateTopicForm id={id} title={title} description={description} />;
 };
 
