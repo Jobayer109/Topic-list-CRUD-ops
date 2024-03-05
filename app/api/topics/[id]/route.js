@@ -10,7 +10,7 @@ export const PUT = async (request, { params }) => {
   return NextResponse.json({ message: "Topic updated" }, { status: 200 });
 };
 
-export const GET = async (request, { params }) => {
+export const GET = async ({ params }) => {
   const { id } = params;
   await dbConnection();
   const topic = await Topic.findOne({ _id: id });
